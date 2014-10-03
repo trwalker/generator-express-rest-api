@@ -1,14 +1,15 @@
-'use strict';
 
-var <%= controllerName %>Controller = function() {
-};
+function <%= controllerName %>Controller() {
+}
 
-var <%= controllerMethod.toLowerCase() %> = function(req, res, next) {
+function <%= controllerMethod.toLowerCase() %>(req, res, next) {
   res.status(200).json({ hello: 'world' });
-};
+}
 
 <%= controllerName %>Controller.prototype = {
   <%= controllerMethod.toLowerCase() %>: <%= controllerMethod.toLowerCase() %>
 };
 
-module.exports = <%= controllerName %>Controller;
+var <%= controllerInstanceName %>Controller = new <%= controllerName %>Controller();
+
+module.exports = <%= controllerInstanceName %>Controller;

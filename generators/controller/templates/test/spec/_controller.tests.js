@@ -1,7 +1,7 @@
 
 describe('<%= controllerName %>Controller Tests', function() {
 
-  var <%= controllerName.toLowerCase() %>Controller;
+  var <%= controllerInstanceName %>Controller;
   var req;
   var res;
   var next;
@@ -12,24 +12,23 @@ describe('<%= controllerName %>Controller Tests', function() {
 
     sinon.spy(res, "status");
 
-    var <%= controllerName %>Controller = require('../../../../lib/controllers/<%= controllerVersion %>/<%= controllerFolderPath %>/<%= controllerName.toLowerCase() %>controller');
-    <%= controllerName.toLowerCase() %>Controller = new <%= controllerName %>Controller();
+    <%= controllerInstanceName %>Controller = require('../../../../../app/controllers/<%= controllerVersion %>/<%= controllerFolderPath %>/<%= controllerInstanceName %>controller');
   });
 
-  describe('<%= controllerMethod.toLowerCase() %>()', function() {
+  describe('<%= controllerInstanceName %>Controller()', function() {
 
     it('is a function', function() {
-      expect(<%= controllerName.toLowerCase() %>Controller.<%= controllerMethod.toLowerCase() %>).to.be.a('function');
+      expect(<%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>).to.be.a('function');
     });
 
     it('should call res.status() one time', function() {
-      <%= controllerName.toLowerCase() %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
+      <%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
 
       expect(res.status.callCount).to.equal(1);
     });
 
     it('should call res.status() with 200', function() {
-        <%= controllerName.toLowerCase() %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
+        <%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
 
       expect(res.status.calledWith(200)).to.equal(true);
     });

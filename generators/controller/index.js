@@ -5,6 +5,7 @@ module.exports = yeoman.generators.Base.extend({
   initializingStep: function() {
     this.questions = [];
     this.controllerName = 'Users';
+    this.controllerInstanceName = 'users';
     this.controllerVersion = 'v1';
     this.controllerFolderPath = 'users';
     this.controllerRoute = '/users/:userid';
@@ -45,6 +46,7 @@ module.exports = yeoman.generators.Base.extend({
 
     var handleAnswers = function(answers) {
       generator.controllerName = generator._.classify(answers.controllerName);
+      generator.controllerInstanceName = generator._.camelize(generator.controllerName.charAt(0).toLowerCase() + generator.controllerName.slice(1));
       generator.controllerVersion = answers.controllerVersion;
       generator.controllerFolderPath = answers.controllerFolderPath.toLowerCase();
       generator.controllerRoute = answers.controllerRoute.toLowerCase();
@@ -66,7 +68,6 @@ module.exports = yeoman.generators.Base.extend({
     copyController(this);
     copyControllerTest(this);
     updateRouteConfig(this);
-    updateDiConfig(this);
   },
 
   conflictsStep: function() {
@@ -79,9 +80,9 @@ module.exports = yeoman.generators.Base.extend({
   }
 });
 
-var copyController = function(generator) {
+function copyController(generator) {
   var controllerDestination = generator.destinationRoot() +
-                              '/lib/controllers/' +
+                              '/app/controllers/' +
                               generator.controllerVersion +
                               '/' +
                               generator.controllerFolderPath +
@@ -89,10 +90,10 @@ var copyController = function(generator) {
                               generator.controllerName.toLowerCase() +
                               'controller.js';
 
-  copyTemplate(generator, 'lib/controllers/_controller.js', controllerDestination);
-};
+  copyTemplate(generator, 'app/controllers/_controller.js', controllerDestination);
+}
 
-var copyControllerTest = function(generator) {
+function copyControllerTest(generator) {
   var controllerTestDestination = generator.destinationRoot() +
                                   '/test/spec/controllers/' +
                                   generator.controllerVersion +
@@ -103,11 +104,11 @@ var copyControllerTest = function(generator) {
                                   'controller.tests.js';
 
   copyTemplate(generator, 'test/spec/_controller.tests.js', controllerTestDestination);
-};
+}
 
-var updateRouteConfig = function(generator) {
+function updateRouteConfig(generator) {
 
-  var routeConfigPath = generator.destinationRoot() + '/lib/config/route.config.json';
+  var routeConfigPath = generator.destinationRoot() + '/app/config/route.config.json';
 
   try {
     var routeConfig = require(routeConfigPath);
@@ -132,33 +133,9 @@ var updateRouteConfig = function(generator) {
   catch (e) {
     throw 'Error parsing and updating route config "' + routeConfigPath + '":' + e;
   }
-};
+}
 
-var updateDiConfig = function(generator) {
-  var diConfigPath = generator.destinationRoot() + '/lib/config/di.config.json';
-
-  try {
-    var diConfig = require(diConfigPath);
-
-    if (diConfig.controllers) {
-      var controllerRequirePath = getControllerRequirePath(generator);
-
-      diConfig.controllers.push({ item: controllerRequirePath,
-                                  dependencies: [],
-                                  scope: 'webrequest' });
-
-      fs.writeFileSync(diConfigPath, JSON.stringify(diConfig, null, 2));
-    }
-    else {
-      throw 'Badly formatted di config "' + diConfigPath + '", controllers array is not defined';
-    }
-  }
-  catch (e) {
-    throw 'Error parsing and updating di config "' + diConfigPath + '":' + e;
-  }
-};
-
-var getControllerRequirePath = function(generator) {
+function getControllerRequirePath(generator) {
   return '../controllers/' +
          generator.controllerVersion +
          '/' +
@@ -166,13 +143,13 @@ var getControllerRequirePath = function(generator) {
          '/' +
          generator.controllerName.toLowerCase() +
          'controller';
-};
+}
 
-var copyTemplate = function(generator, template, path) {
+function copyTemplate(generator, template, path) {
   if(fs.existsSync(path)) {
     throw 'The file "' + path + '" already exists!';
   }
   else {
     generator.template(template, path);
   }
-};
+}
