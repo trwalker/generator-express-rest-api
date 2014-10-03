@@ -1,0 +1,9 @@
+{
+  "routes": [
+    {
+      "route": "/v1",
+      "method": "GET",
+      "controller": "../controllers/v1/homecontroller"
+    }
+  ]
+}

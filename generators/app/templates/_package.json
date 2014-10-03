@@ -1,0 +1,25 @@
+{
+  "name": "<%= applicationName %>",
+  "version": "<%= version %>",
+  "description": "<%= applicationDescription %>",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "install-local": "npm install -g mocha & npm install -g node-inspector & npm install",
+    "start": "node server.js 1 prod 127.0.0.1 3000 9000",
+    "debug": "node-debug server.js 0 dev 127.0.0.1 3000 9000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "<%= gitRepository %>"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "<%= author %>",
+  "license": "<%= license %>",
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
+}
