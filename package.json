@@ -1,7 +1,7 @@
 {
   "name": "generator-express-rest-api",
   "version": "0.0.1",
-  "description": "yeoman generator for a restful service using express and cluster-service",
+  "description": "Yeoman generator for a RESTful API using express, cluster-service, mocha, chai, and sinon",
   "scripts": {
     "test": "test"
   },
@@ -12,13 +12,11 @@
   "keywords": [
     "yo",
     "yeoman",
-    "yeoman",
     "generator",
     "express",
-    "di",
-    "dependency",
-    "injection",
-    "rest"
+    "rest",
+    "api",
+    "service"
   ],
   "author": "Tim Walker <tim.r.walker@gmail.com> (https://twitter.com/tim_walker)",
   "license": "MIT",

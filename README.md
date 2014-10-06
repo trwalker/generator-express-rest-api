@@ -2,7 +2,7 @@ generator-express-rest-api
 ==========================
 
 ### Summary
-This is a Yeoman generator to quick scaffold a RESTful API using expresss and cluter-service.  The strucutre generated follows the MVC controller/service/repository pattern.
+This is a Yeoman generator to quick scaffold a RESTful API using expresss, cluter-service, mocha, chai, and sinon.  The structure generated follows the MVC controller/service/repository pattern.
 
 ### Installing Yeoman
 http://yeoman.io/learning/index.html
