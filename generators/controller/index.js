@@ -152,7 +152,6 @@ function tryUpdateRouteConfig(generator) {
   catch (e) {
     var message = 'Error parsing and updating route config "' + routeConfigPath + '":' + e;
     console.log(message);
-    throw message;
   }
 
   return success;
@@ -193,7 +192,7 @@ function getControllerRequirePath(generator) {
 
 function copyTemplate(generator, template, path) {
   if(fs.existsSync(path)) {
-    throw 'The file "' + path + '" already exists!';
+    console.log('The file "' + path + '" already exists!');
   }
   else {
     generator.template(template, path);

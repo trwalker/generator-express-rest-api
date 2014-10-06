@@ -102,7 +102,7 @@ module.exports = yeoman.generators.Base.extend({
 
 var copyTemplate = function(generator, template, path) {
   if(fs.existsSync(path)) {
-    throw 'The file "' + path + '" already exists!';
+    console.log('The file "' + path + '" already exists!');
   }
   else {
     generator.template(template, path);

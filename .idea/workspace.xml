@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f3ab9fd-3197-4b4a-b4e0-c76d955fa610" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/generator-express-rest-api.iml" afterPath="$PROJECT_DIR$/.idea/generator-express-rest-api.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js" afterPath="$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generators/app/index.js" afterPath="$PROJECT_DIR$/generators/app/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/generators/controller/index.js" afterPath="$PROJECT_DIR$/generators/controller/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -41,17 +40,27 @@
       <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generators/controller/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3090">
-              <caret line="51" column="146" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="146" />
+            <state vertical-scroll-proportion="-6.076923" vertical-offset="2617" max-vertical-offset="3075">
+              <caret line="185" column="14" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_controller.tests.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/generators/app/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.58598727" vertical-offset="1254" max-vertical-offset="1725">
+              <caret line="102" column="56" selection-start-line="102" selection-start-column="56" selection-end-line="102" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_controller.tests.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51307845" vertical-offset="0" max-vertical-offset="645">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
               <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
               <folding />
             </state>
@@ -78,13 +87,13 @@
         <option value="$PROJECT_DIR$/generators/app/templates/app/controllers/v1/homecontroller.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/generators/app/templates/test/spec/controllers/v1/homecontroller.tests.js" />
-        <option value="$PROJECT_DIR$/generators/app/index.js" />
         <option value="$PROJECT_DIR$/generators/app/templates/app/config/routeconfig.js" />
         <option value="$PROJECT_DIR$/generators/app/templates/_package.json" />
         <option value="$PROJECT_DIR$/generators/app/templates/app/config/settings/settingsconfig.js" />
         <option value="$PROJECT_DIR$/generators/controller/templates/app/controllers/_controller.js" />
-        <option value="$PROJECT_DIR$/generators/controller/index.js" />
         <option value="$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js" />
+        <option value="$PROJECT_DIR$/generators/controller/index.js" />
+        <option value="$PROJECT_DIR$/generators/app/index.js" />
       </list>
     </option>
   </component>
@@ -326,7 +335,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3286445" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3286445" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32992327" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -420,13 +429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generators/app/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58956915" vertical-offset="910" max-vertical-offset="1725">
-          <caret line="78" column="102" selection-start-line="78" selection-start-column="102" selection-end-line="78" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generators/app/templates/_package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2542373" vertical-offset="0" max-vertical-offset="472">
@@ -450,18 +452,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generators/controller/index.js">
+    <entry file="file://$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="3090">
-          <caret line="51" column="146" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="146" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generators/controller/templates/test/spec/_controller.tests.js">
+    <entry file="file://$PROJECT_DIR$/generators/controller/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51307845" vertical-offset="0" max-vertical-offset="645">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state vertical-scroll-proportion="-6.076923" vertical-offset="2617" max-vertical-offset="3075">
+          <caret line="185" column="14" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generators/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58598727" vertical-offset="1254" max-vertical-offset="1725">
+          <caret line="102" column="56" selection-start-line="102" selection-start-column="56" selection-end-line="102" selection-end-column="56" />
           <folding />
         </state>
       </provider>
