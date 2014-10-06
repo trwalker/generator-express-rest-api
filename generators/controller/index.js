@@ -6,10 +6,10 @@ const routeConfigRequirePath = '/app/config/route.config.json';
 module.exports = yeoman.generators.Base.extend({
   initializingStep: function() {
     this.questions = [];
-    this.controllerName = 'Users';
-    this.controllerInstanceName = 'users';
+    this.serviceName = 'Users';
+    this.serviceInstanceName = 'users';
     this.controllerVersion = 'v1';
-    this.controllerFolderPath = 'users';
+    this.serviceFolderPath = 'users';
     this.controllerRequirePathFromTest = '';
     this.controllerRoute = '/users/:userid';
     this.controllerMethod = 'GET';
@@ -20,7 +20,7 @@ module.exports = yeoman.generators.Base.extend({
     this.questions.push({ type    : 'input',
                           name    : 'controllerName',
                           message : 'Controller Name (leave off the "Controller" postfix)',
-                          default : this.controllerName });
+                          default : this.serviceName });
 
     this.questions.push({ type    : 'input',
                           name    : 'controllerVersion',
@@ -30,7 +30,7 @@ module.exports = yeoman.generators.Base.extend({
     this.questions.push({ type    : 'input',
                           name    : 'controllerFolderPath',
                           message : 'Controller Folder Path (relative path after the version folder, no starting or training slashes)',
-                          default :  this.controllerFolderPath });
+                          default :  this.serviceFolderPath });
 
     this.questions.push({ type    : 'input',
                           name    : 'controllerRoute',
@@ -48,11 +48,11 @@ module.exports = yeoman.generators.Base.extend({
     var generator = this;
 
     var handleAnswers = function(answers) {
-      generator.controllerName = generator._.classify(answers.controllerName);
-      generator.controllerInstanceName = generator._.camelize(generator.controllerName.charAt(0).toLowerCase() + generator.controllerName.slice(1));
+      generator.serviceName = generator._.classify(answers.serviceName);
+      generator.serviceInstanceName = generator._.camelize(generator.serviceName.charAt(0).toLowerCase() + generator.serviceName.slice(1));
       generator.controllerVersion = answers.controllerVersion;
-      generator.controllerFolderPath = answers.controllerFolderPath.toLowerCase();
-      generator.controllerRequirePathFromTest = getTestRequirePrefix(generator.controllerFolderPath) + 'app/controllers/' + generator.controllerVersion + '/' + generator.controllerFolderPath + '/' + generator.controllerInstanceName + 'controller';
+      generator.serviceFolderPath = answers.serviceFolderPath.toLowerCase();
+      generator.controllerRequirePathFromTest = getTestRequirePrefix(generator.serviceFolderPath) + 'app/controllers/' + generator.controllerVersion + '/' + generator.serviceFolderPath + '/' + generator.serviceInstanceName + 'controller';
       generator.controllerRoute = answers.controllerRoute.toLowerCase();
       generator.controllerMethod = answers.controllerMethod;
 
@@ -104,9 +104,9 @@ function copyController(generator) {
                               '/app/controllers/' +
                               generator.controllerVersion +
                               '/' +
-                              generator.controllerFolderPath +
+                              generator.serviceFolderPath +
                               '/' +
-                              generator.controllerName.toLowerCase() +
+                              generator.serviceName.toLowerCase() +
                               'controller.js';
 
   copyTemplate(generator, 'app/controllers/_controller.js', controllerDestination);
@@ -117,12 +117,12 @@ function copyControllerTest(generator) {
                                   '/test/spec/controllers/' +
                                   generator.controllerVersion +
                                   '/' +
-                                  generator.controllerFolderPath +
+                                  generator.serviceFolderPath +
                                   '/' +
-                                  generator.controllerName.toLowerCase() +
+                                  generator.serviceName.toLowerCase() +
                                   'controller.tests.js';
 
-  copyTemplate(generator, 'test/spec/_controller.tests.js', controllerTestDestination);
+  copyTemplate(generator, 'test/spec/controllers/_controller.tests.js', controllerTestDestination);
 }
 
 function tryUpdateRouteConfig(generator) {
@@ -184,9 +184,9 @@ function getControllerRequirePath(generator) {
   return '../controllers/' +
          generator.controllerVersion +
          '/' +
-         generator.controllerFolderPath +
+         generator.serviceFolderPath +
          '/' +
-         generator.controllerName.toLowerCase() +
+         generator.serviceName.toLowerCase() +
          'controller';
 }
 
