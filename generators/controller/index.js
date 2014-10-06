@@ -1,6 +1,8 @@
 var yeoman = require('yeoman-generator');
 var fs = require('fs');
 
+const routeConfigRequirePath = '/app/config/route.config.json';
+
 module.exports = yeoman.generators.Base.extend({
   initializingStep: function() {
     this.questions = [];
@@ -8,6 +10,7 @@ module.exports = yeoman.generators.Base.extend({
     this.controllerInstanceName = 'users';
     this.controllerVersion = 'v1';
     this.controllerFolderPath = 'users';
+    this.controllerRequirePathFromTest = '';
     this.controllerRoute = '/users/:userid';
     this.controllerMethod = 'GET';
     this.httpMethods = [ 'GET', 'PUT', 'POST', 'DELETE' ];
@@ -49,6 +52,7 @@ module.exports = yeoman.generators.Base.extend({
       generator.controllerInstanceName = generator._.camelize(generator.controllerName.charAt(0).toLowerCase() + generator.controllerName.slice(1));
       generator.controllerVersion = answers.controllerVersion;
       generator.controllerFolderPath = answers.controllerFolderPath.toLowerCase();
+      generator.controllerRequirePathFromTest = getTestRequirePrefix(generator.controllerFolderPath) + 'app/controllers/' + generator.controllerVersion + '/' + generator.controllerFolderPath + '/' + generator.controllerInstanceName + 'controller';
       generator.controllerRoute = answers.controllerRoute.toLowerCase();
       generator.controllerMethod = answers.controllerMethod;
 
@@ -65,9 +69,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writingStep: function() {
-    copyController(this);
-    copyControllerTest(this);
-    updateRouteConfig(this);
+    if(tryUpdateRouteConfig(this)) {
+      copyController(this);
+      copyControllerTest(this);
+    }
   },
 
   conflictsStep: function() {
@@ -79,6 +84,20 @@ module.exports = yeoman.generators.Base.extend({
   endStep: function() {
   }
 });
+
+function getTestRequirePrefix(controllerFolderPath) {
+  var requirePrefix = '../../../../';
+
+  if(controllerFolderPath.length !== 0) {
+    var folderCount = (controllerFolderPath.match(/\//g) || []).length + 1;
+
+    for(var i = 0; i < folderCount; i++) {
+      requirePrefix = '../' + requirePrefix;
+    }
+  }
+
+  return requirePrefix;
+}
 
 function copyController(generator) {
   var controllerDestination = generator.destinationRoot() +
@@ -106,33 +125,60 @@ function copyControllerTest(generator) {
   copyTemplate(generator, 'test/spec/_controller.tests.js', controllerTestDestination);
 }
 
-function updateRouteConfig(generator) {
+function tryUpdateRouteConfig(generator) {
+  var success = false;
 
-  var routeConfigPath = generator.destinationRoot() + '/app/config/route.config.json';
+  var routeConfigPath = generator.destinationRoot() + routeConfigRequirePath;
 
   try {
     var routeConfig = require(routeConfigPath);
 
     if (routeConfig && routeConfig.routes) {
-      var controllerRoute = '/' +
-                            generator.controllerVersion +
-                            generator.controllerRoute;
+      var controllerRoute = '/' + generator.controllerVersion + generator.controllerRoute;
 
-      var controllerRequirePath = getControllerRequirePath(generator);
-
-      routeConfig.routes.push({ route: controllerRoute,
-                                method: generator.controllerMethod,
-                                controller: controllerRequirePath });
-
-      fs.writeFileSync(routeConfigPath, JSON.stringify(routeConfig, null, 2));
+      if(doesRouteExistInConfig(routeConfig, controllerRoute)) {
+        console.log('Route already exists in route.config.json. Route: ' + controllerRoute);
+        console.log('If you want to add a new http method to an existing controller you must modify ' + routeConfigRequirePath + ' and add the method to the controller.');
+      }
+      else {
+        writeToRouteConfig(generator, routeConfig, routeConfigPath, controllerRoute);
+        success = true;
+      }
     }
     else {
-      throw 'Badly formatted route config "' + routeConfigPath + '", routes array is not defined';
+      console.log('Badly formatted route config "' + routeConfigPath + '", routes array is not defined');
     }
   }
   catch (e) {
-    throw 'Error parsing and updating route config "' + routeConfigPath + '":' + e;
+    var message = 'Error parsing and updating route config "' + routeConfigPath + '":' + e;
+    console.log(message);
+    throw message;
   }
+
+  return success;
+}
+
+function doesRouteExistInConfig(routeConfig, controllerRoute) {
+  var i, routesLength;
+
+  for(i = 0, routesLength = routeConfig.routes.length; i < routesLength; i++) {
+    var routeItem = routeConfig.routes[i];
+    if(routeItem.route === controllerRoute) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function writeToRouteConfig(generator, routeConfig, routeConfigPath, controllerRoute) {
+  var controllerRequirePath = getControllerRequirePath(generator);
+
+  routeConfig.routes.push({ route: controllerRoute,
+                            method: generator.controllerMethod,
+                            controller: controllerRequirePath });
+
+  fs.writeFileSync(routeConfigPath, JSON.stringify(routeConfig, null, 2));
 }
 
 function getControllerRequirePath(generator) {

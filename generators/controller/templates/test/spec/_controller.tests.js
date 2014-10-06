@@ -12,10 +12,10 @@ describe('<%= controllerName %>Controller Tests', function() {
 
     sinon.spy(res, "status");
 
-    <%= controllerInstanceName %>Controller = require('../../../../../app/controllers/<%= controllerVersion %>/<%= controllerFolderPath %>/<%= controllerInstanceName %>controller');
+    <%= controllerInstanceName %>Controller = require('<%= controllerRequirePathFromTest %>');
   });
 
-  describe('<%= controllerInstanceName %>Controller()', function() {
+  describe('<%= controllerMethod.toLowerCase() %>()', function() {
 
     it('is a function', function() {
       expect(<%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>).to.be.a('function');
