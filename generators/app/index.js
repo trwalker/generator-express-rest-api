@@ -95,7 +95,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   endStep: function() {
-    this.npmInstall(['express', 'cluster-service', 'body-parser', 'express-dependency-injector'], { 'save': true });
+    this.npmInstall(['express', 'cluster-service', 'body-parser'], { 'save': true });
     this.npmInstall(['mocha', 'chai', 'sinon'], { 'saveDev': true });
   }
 });
