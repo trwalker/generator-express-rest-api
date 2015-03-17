@@ -24,23 +24,28 @@ http://yeoman.io/learning/index.html
 
 ### Application Folder Structure Example
 ```
+package.json
+server.js
 \app
 \..\config
 \..\settings
+\..\..\settings-config.js
 \..\route.config.json
+\..\route-config.js
+\..\worker-config.js
 
 \..\controllers
 \..\..\v1
 \..\..\..\users
-\..\..\..\..\userscontroller.js
+\..\..\..\..\users-controller.js
 
 \..\services
 \..\..\users
-\..\..\..\userservice.js
+\..\..\..\user-service.js
 
 \..\repositories
 \..\..\users
-\..\..\..\userrepository.js
+\..\..\..\user-repository.js
 \test
 \..\spec
 \..\mocha.opts
@@ -49,12 +54,12 @@ http://yeoman.io/learning/index.html
 \..\..\controllers
 \..\..\..\v1
 \..\..\..\..\users
-\..\..\..\..\..\userscontroller.tests.js
+\..\..\..\..\..\users-controller.tests.js
 
 \..\..\services
 \..\..\..\users
-\..\..\..\..\userservice.tests.js
+\..\..\..\..\user-service.tests.js
 
 \..\..\repositories
 \..\..\..\users
-\..\..\..\..\userrepository.js
+\..\..\..\..\user-repository.tests.js

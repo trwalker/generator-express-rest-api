@@ -1,6 +1,6 @@
 {
   "name": "generator-express-rest-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Yeoman generator for a RESTful API using express, cluster-service, mocha, chai, and sinon",
   "author": "Tim Walker <tim.r.walker@gmail.com>",
   "license": "MIT",
