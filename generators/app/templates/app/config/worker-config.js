@@ -2,8 +2,8 @@ var http = require('http');
 var express = require('express');
 var application = express();
 var bodyParser = require('body-parser');
-var routeConfig = require('./routeconfig');
-var settingsConfig = require('./settings/settingsconfig');
+var routeConfig = require('./route-config');
+var settingsConfig = require('./settings/settings-config');
 
 function configureWorker(application) {
   configureApplication(application);

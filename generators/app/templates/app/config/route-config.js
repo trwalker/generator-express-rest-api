@@ -1,4 +1,4 @@
-var settingsConfig = require('./settings/settingsconfig');
+var settingsConfig = require('./settings/settings-config');
 
 function RouteConfig() {
 }

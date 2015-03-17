@@ -1,5 +1,5 @@
 
-describe('<%= repositoryName %>Repository Tests', function() {
+describe('<%= repositoryClassName %>Repository Tests', function() {
 
   var <%= repositoryInstanceName %>Repository;
 
@@ -7,10 +7,11 @@ describe('<%= repositoryName %>Repository Tests', function() {
     <%= repositoryInstanceName %>Repository = require('<%= repositoryRequirePathFromTest %>');
   });
 
-  describe('get<%= repositoryName %>Data()', function() {
+  describe('get<%= repositoryClassName %>Data()', function() {
 
-    it('is a function', function() {
-      expect(<%= repositoryInstanceName %>Repository.get<%= repositoryName %>Data).to.be.a('function');
+    it('is a function', function(done) {
+      expect(<%= repositoryInstanceName %>Repository.get<%= repositoryClassName %>Data).to.be.a('function');
+      done();
     });
 
   });

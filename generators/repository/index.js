@@ -4,16 +4,17 @@ var fs = require('fs');
 module.exports = yeoman.generators.Base.extend({
   initializingStep: function() {
     this.questions = [];
-    this.repositoryName = 'User';
-    this.repositoryInstanceName = 'user';
-    this.repositoryFolderPath = 'users';
+    this.repositoryName = 'clown';
+    this.repositoryClassName = 'Clown';
+    this.repositoryInstanceName = 'clown';
+    this.repositoryFolderPath = 'circus';
     this.repositoryRequirePathFromTest = '';
   },
 
   promptingStep: function() {
     this.questions.push({ type    : 'input',
                           name    : 'repositoryName',
-                          message : 'Repository Name (leave off the "Repository" postfix)',
+                          message : 'Repository Name (dash delimited, leave off -repository)',
                           default : this.repositoryName });
 
     this.questions.push({ type    : 'input',
@@ -26,10 +27,11 @@ module.exports = yeoman.generators.Base.extend({
     var generator = this;
 
     var handleAnswers = function(answers) {
-      generator.repositoryName = generator._.classify(answers.repositoryName);
-      generator.repositoryInstanceName = generator._.camelize(generator.repositoryName.charAt(0).toLowerCase() + generator.repositoryName.slice(1));
+      generator.repositoryName = answers.repositoryName.toLowerCase();
+      generator.repositoryClassName = generator._.classify(answers.repositoryName);
+      generator.repositoryInstanceName = generator._.camelize(generator.repositoryName);
       generator.repositoryFolderPath = answers.repositoryFolderPath.toLowerCase();
-      generator.repositoryRequirePathFromTest = getTestRequirePrefix(generator.repositoryFolderPath) + 'app/repositories/' + generator.repositoryFolderPath + '/' + generator.repositoryInstanceName + 'repository';
+      generator.repositoryRequirePathFromTest = getTestRequirePrefix(generator.repositoryFolderPath) + 'app/repositories/' + generator.repositoryFolderPath + '/' + generator.repositoryName + '-repository';
 
       done();
     };
@@ -78,7 +80,7 @@ function copyRepository(generator) {
                               generator.repositoryFolderPath +
                               '/' +
                               generator.repositoryName.toLowerCase() +
-                              'repository.js';
+                              '-repository.js';
 
   copyTemplate(generator, 'app/repositories/_repository.js', repositoryDestination);
 }
@@ -89,7 +91,7 @@ function copyRepositoryTest(generator) {
                                   generator.repositoryFolderPath +
                                   '/' +
                                   generator.repositoryName.toLowerCase() +
-                                  'repository.tests.js';
+                                  '-repository.tests.js';
 
   copyTemplate(generator, 'test/spec/repositories/_repository.tests.js', repositoryTestDestination);
 }

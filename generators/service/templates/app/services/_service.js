@@ -1,15 +1,15 @@
 
-function <%= serviceName %>Service() {
+function <%= serviceClassName %>Service() {
 }
 
-function get<%= serviceName %>(id) {
+function lookup<%= serviceClassName %>(id) {
   return { id: id };
 }
 
-<%= serviceName %>Service.prototype = {
-    get<%= serviceName %>: get<%= serviceName %>
+<%= serviceClassName %>Service.prototype = {
+  lookup<%= serviceClassName %>: lookup<%= serviceClassName %>
 };
 
-var <%= serviceInstanceName %>Service = new <%= serviceName %>Service();
+var <%= serviceInstanceName %>Service = new <%= serviceClassName %>Service();
 
 module.exports = <%= serviceInstanceName %>Service;

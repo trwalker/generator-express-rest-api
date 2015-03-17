@@ -1,15 +1,15 @@
 
-function <%= controllerName %>Controller() {
+function <%= controllerClassName %>Controller() {
 }
 
 function <%= controllerMethod.toLowerCase() %>(req, res, next) {
   res.status(200).json({ hello: 'world' });
 }
 
-<%= controllerName %>Controller.prototype = {
+<%= controllerClassName %>Controller.prototype = {
   <%= controllerMethod.toLowerCase() %>: <%= controllerMethod.toLowerCase() %>
 };
 
-var <%= controllerInstanceName %>Controller = new <%= controllerName %>Controller();
+var <%= controllerInstanceName %>Controller = new <%= controllerClassName %>Controller();
 
 module.exports = <%= controllerInstanceName %>Controller;

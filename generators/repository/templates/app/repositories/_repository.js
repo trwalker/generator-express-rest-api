@@ -1,15 +1,15 @@
 
-function <%= repositoryName %>Repository() {
+function <%= repositoryClassName %>Repository() {
 }
 
-function get<%= repositoryName %>Data(id) {
+function get<%= repositoryClassName %>Data(id) {
   return { id: id };
 }
 
-<%= repositoryName %>Repository.prototype = {
-    get<%= repositoryName %>Data: get<%= repositoryName %>Data
+<%= repositoryClassName %>Repository.prototype = {
+    get<%= repositoryClassName %>Data: get<%= repositoryClassName %>Data
 };
 
-var <%= repositoryInstanceName %>Repository = new <%= repositoryName %>Repository();
+var <%= repositoryInstanceName %>Repository = new <%= repositoryClassName %>Repository();
 
 module.exports = <%= repositoryInstanceName %>Repository;

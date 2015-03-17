@@ -73,19 +73,16 @@ module.exports = yeoman.generators.Base.extend({
     copyTemplate(this, 'server.js', 'server.js');
 
     copyTemplate(this, 'app/config/route.config.json', 'app/config/route.config.json');
-    copyTemplate(this, 'app/config/routeconfig.js', 'app/config/routeconfig.js');
-    copyTemplate(this, 'app/config/workerconfig.js', 'app/config/workerconfig.js');
+    copyTemplate(this, 'app/config/route-config.js', 'app/config/route-config.js');
+    copyTemplate(this, 'app/config/worker-config.js', 'app/config/worker-config.js');
 
-    copyTemplate(this, 'app/config/settings/settingsconfig.js', 'app/config/settings/settingsconfig.js');
+    copyTemplate(this, 'app/config/settings/settings-config.js', 'app/config/settings/settings-config.js');
     copyTemplate(this, 'app/config/settings/settings.config.dev.json', 'app/config/settings/settings.config.dev.json');
     copyTemplate(this, 'app/config/settings/settings.config.test.json', 'app/config/settings/settings.config.test.json');
     copyTemplate(this, 'app/config/settings/settings.config.prod.json', 'app/config/settings/settings.config.prod.json');
 
-    copyTemplate(this, 'app/controllers/v1/homecontroller.js', 'app/controllers/v1/homecontroller.js');
-
     copyTemplate(this, 'test/mocha.opts', 'test/mocha.opts');
     copyTemplate(this, 'test/tests.initialize.js', 'test/tests.initialize.js');
-    copyTemplate(this, 'test/spec/controllers/v1/homecontroller.tests.js', 'test/spec/controllers/v1/homecontroller.tests.js');
   },
 
   conflictsStep: function() {

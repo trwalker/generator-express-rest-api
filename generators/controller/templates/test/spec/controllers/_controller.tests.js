@@ -1,5 +1,5 @@
 
-describe('<%= controllerName %>Controller Tests', function() {
+describe('<%= controllerClassName %>Controller Tests', function() {
 
   var <%= controllerInstanceName %>Controller;
   var req;
@@ -17,20 +17,23 @@ describe('<%= controllerName %>Controller Tests', function() {
 
   describe('<%= controllerMethod.toLowerCase() %>()', function() {
 
-    it('is a function', function() {
+    it('is a function', function(done) {
       expect(<%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>).to.be.a('function');
+      done();
     });
 
-    it('should call res.status() one time', function() {
+    it('should call res.status() one time', function(done) {
       <%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
 
       expect(res.status.callCount).to.equal(1);
+      done();
     });
 
-    it('should call res.status() with 200', function() {
+    it('should call res.status() with 200', function(done) {
         <%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>(req, res, next);
 
       expect(res.status.calledWith(200)).to.equal(true);
+      done();
     });
 
   });

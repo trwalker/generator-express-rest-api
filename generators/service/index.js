@@ -4,16 +4,17 @@ var fs = require('fs');
 module.exports = yeoman.generators.Base.extend({
   initializingStep: function() {
     this.questions = [];
-    this.serviceName = 'User';
-    this.serviceInstanceName = 'user';
-    this.serviceFolderPath = 'users';
+    this.serviceName = 'clown';
+    this.serviceClassName = 'Clown';
+    this.serviceInstanceName = 'clown';
+    this.serviceFolderPath = 'circus';
     this.serviceRequirePathFromTest = '';
   },
 
   promptingStep: function() {
     this.questions.push({ type    : 'input',
                           name    : 'serviceName',
-                          message : 'Service Name (leave off the "Service" postfix)',
+                          message : 'Service Name (dash delimited, leave off -service)',
                           default : this.serviceName });
 
     this.questions.push({ type    : 'input',
@@ -26,10 +27,11 @@ module.exports = yeoman.generators.Base.extend({
     var generator = this;
 
     var handleAnswers = function(answers) {
-      generator.serviceName = generator._.classify(answers.serviceName);
-      generator.serviceInstanceName = generator._.camelize(generator.serviceName.charAt(0).toLowerCase() + generator.serviceName.slice(1));
+      generator.serviceName = answers.serviceName.toLowerCase();
+      generator.serviceClassName = generator._.classify(answers.serviceName);
+      generator.serviceInstanceName = generator._.camelize(generator.serviceName);
       generator.serviceFolderPath = answers.serviceFolderPath.toLowerCase();
-      generator.serviceRequirePathFromTest = getTestRequirePrefix(generator.serviceFolderPath) + 'app/services/' + generator.serviceFolderPath + '/' + generator.serviceInstanceName + 'service';
+      generator.serviceRequirePathFromTest = getTestRequirePrefix(generator.serviceFolderPath) + 'app/services/' + generator.serviceFolderPath + '/' + generator.serviceName + '-service';
 
       done();
     };
@@ -78,7 +80,7 @@ function copyService(generator) {
                               generator.serviceFolderPath +
                               '/' +
                               generator.serviceName.toLowerCase() +
-                              'service.js';
+                              '-service.js';
 
   copyTemplate(generator, 'app/services/_service.js', serviceDestination);
 }
@@ -89,7 +91,7 @@ function copyServiceTest(generator) {
                                   generator.serviceFolderPath +
                                   '/' +
                                   generator.serviceName.toLowerCase() +
-                                  'service.tests.js';
+                                  '-service.tests.js';
 
   copyTemplate(generator, 'test/spec/services/_service.tests.js', serviceTestDestination);
 }

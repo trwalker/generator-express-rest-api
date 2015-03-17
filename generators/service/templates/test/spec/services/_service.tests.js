@@ -1,5 +1,5 @@
 
-describe('<%= serviceName %>Service Tests', function() {
+describe('<%= serviceClassName %>Service Tests', function() {
 
   var <%= serviceInstanceName %>Service;
 
@@ -7,10 +7,11 @@ describe('<%= serviceName %>Service Tests', function() {
     <%= serviceInstanceName %>Service = require('<%= serviceRequirePathFromTest %>');
   });
 
-  describe('get<%= serviceName %>()', function() {
+  describe('lookup<%= serviceClassName %>', function() {
 
-    it('is a function', function() {
-      expect(<%= serviceInstanceName %>Service.get<%= serviceName %>).to.be.a('function');
+    it('is a function', function(done) {
+      expect(<%= serviceInstanceName %>Service.lookup<%= serviceClassName %>).to.be.a('function');
+      done();
     });
 
   });
