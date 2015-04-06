@@ -17,7 +17,7 @@ describe('<%= controllerClassName %>Controller Tests', function() {
 
   describe('<%= controllerMethod.toLowerCase() %>()', function() {
 
-    it('is a function', function(done) {
+    it('should be a function', function(done) {
       expect(<%= controllerInstanceName %>Controller.<%= controllerMethod.toLowerCase() %>).to.be.a('function');
       done();
     });

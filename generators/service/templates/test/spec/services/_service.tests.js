@@ -9,7 +9,7 @@ describe('<%= serviceClassName %>Service Tests', function() {
 
   describe('lookup<%= serviceClassName %>', function() {
 
-    it('is a function', function(done) {
+    it('should be a function', function(done) {
       expect(<%= serviceInstanceName %>Service.lookup<%= serviceClassName %>).to.be.a('function');
       done();
     });

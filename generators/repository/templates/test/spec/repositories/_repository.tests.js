@@ -9,7 +9,7 @@ describe('<%= repositoryClassName %>Repository Tests', function() {
 
   describe('get<%= repositoryClassName %>Data()', function() {
 
-    it('is a function', function(done) {
+    it('should be a function', function(done) {
       expect(<%= repositoryInstanceName %>Repository.get<%= repositoryClassName %>Data).to.be.a('function');
       done();
     });

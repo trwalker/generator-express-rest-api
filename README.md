@@ -40,7 +40,7 @@ http://yeoman.io/learning/index.html
 > npm test
 ```
 ```
-// runs istanbul code coverage (make sure to run "npm test" first)
+// runs istanbul code coverage
 > npm run test-coverage
 ```
 

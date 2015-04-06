@@ -6,9 +6,7 @@ function RouteConfig() {
 function registerRoutes(application) {
   var config = loadRouteConfig();
 
-  var routesLength = config.routes.length;
-
-  for(var i = 0; i < routesLength; i++) {
+  for(var i = 0, length = config.routes.length; i < length; i++) {
     var routeItem = config.routes[i];
 
     var controller = loadController(routeItem);
