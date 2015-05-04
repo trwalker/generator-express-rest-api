@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/trwalker/generator-express-rest-api.svg)](https://travis-ci.org/trwalker/generator-express-rest-api)
+
 generator-express-rest-api
 ==========================
 
