@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "test-coverage": "npm test && istanbul cover _mocha -- -R spec",
+    "test-coverage": "npm test && istanbul cover node_modules/mocha/bin/_mocha -- -R spec",
     "install-local": "npm install -g mocha & npm install -g node-inspector & npm install",
     "start": "node server.js 1 prod 127.0.0.1 3000 9000",
     "debug": "node-debug server.js 0 dev 127.0.0.1 3000 9000"

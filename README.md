@@ -9,6 +9,9 @@ This is a Yeoman generator to quick scaffold a RESTful API using expresss, clute
 ### Installing Yeoman
 http://yeoman.io/learning/index.html
 
+## Windows Pre-Requisites
+- Python 2.7.x: https://www.python.org/downloads/
+
 ### Installing Generator
 `> npm install -g generator-express-rest-api`
 
