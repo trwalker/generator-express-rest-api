@@ -90,3 +90,7 @@ server.js
 \..\..\repositories
 \..\..\..\users
 \..\..\..\..\user-repository.tests.js
+```
+
+### Example Application: Marvel Node API
+https://github.com/trwalker/marvel-node
