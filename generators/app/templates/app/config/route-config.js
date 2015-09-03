@@ -13,7 +13,13 @@ function registerRoutes(application) {
     var route = getRoute(routeItem);
     var method = getMethod(routeItem);
 
-    registerRoute(application, controller, route, method);
+    if (method.constructor === Array) {
+      method.forEach(function (entry) {
+        registerRoute(application, controller, route, entry);
+      })
+    } else {
+      registerRoute(application, controller, route, method);
+    }
   }
 
   createConfigRoute(application);
@@ -66,17 +72,38 @@ function getMethod(routeItem) {
     throw 'Undefined or empty "method" property in "lib/config/route.config.json"';
   }
 
-  var method = routeItem.method.toLowerCase();
+  var method;
 
-  switch(method) {
-    case 'get':
-    case 'put':
-    case 'post':
-    case 'delete':
-      return method;
-      break;
-    default:
-      throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
+  if (routeItem.method.constructor === Array) {
+    method = [];
+    routeItem.method.forEach(function (entry) {
+      switch (entry.toLowerCase()) {
+        case 'get':
+        case 'put':
+        case 'post':
+        case 'delete':
+          method.push(entry.toLowerCase());
+          break;
+        default:
+          throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
+      }
+
+    });
+
+    return method;
+  } else {
+    method = routeItem.method.toLowerCase();
+
+    switch (method) {
+      case 'get':
+      case 'put':
+      case 'post':
+      case 'delete':
+        return method;
+        break;
+      default:
+        throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
+    }
   }
 }
 
