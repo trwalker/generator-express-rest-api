@@ -12,8 +12,9 @@ function registerRoutes(application) {
     var controller = loadController(routeItem);
     var route = getRoute(routeItem);
     var method = getMethod(routeItem);
+    var action = getAction(routeItem);
 
-    registerRoute(application, controller, route, method);
+    registerRoute(application, controller, route, method, action);
   }
 
   createConfigRoute(application);
@@ -80,9 +81,17 @@ function getMethod(routeItem) {
   }
 }
 
-function registerRoute(application, controller, route, method) {
+function getAction(routeItem) {
+  if(!routeItem || !routeItem.action || routeItem.action.length === 0) {
+    return getMethod(routeItem);
+  }
+  return routeItem.action;
+}
+
+
+function registerRoute(application, controller, route, method, action) {
   application.route(route)[method](function(req, res, next) {
-    controller[method](req, res, next);
+    controller[action](req, res, next);
   });
 }
 
