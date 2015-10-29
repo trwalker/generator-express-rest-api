@@ -13,7 +13,7 @@ function registerRoutes(application) {
     var route = getRoute(routeItem);
     var method = getMethod(routeItem);
 
-    if (method.constructor === Array) {
+    if (method instanceof Array) {
       method.forEach(function (entry) {
         registerRoute(application, controller, route, entry);
       })
@@ -74,37 +74,28 @@ function getMethod(routeItem) {
 
   var method;
 
-  if (routeItem.method.constructor === Array) {
-    method = [];
+  if (routeItem.method instanceof Array) {
+    var method = [];
     routeItem.method.forEach(function (entry) {
-      switch (entry.toLowerCase()) {
+      method.push(validateMethod(entry.toLowerCase()));
+    });
+    return method;
+  } else {
+    return validateMethod(routeItem.method.toLowerCase());
+  }
+}
+
+function validateMethod(method) {
+    switch (method.toLowerCase()) {
         case 'get':
         case 'put':
         case 'post':
         case 'delete':
-          method.push(entry.toLowerCase());
-          break;
+            return method.toLowerCase();
+            break;
         default:
-          throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
-      }
-
-    });
-
-    return method;
-  } else {
-    method = routeItem.method.toLowerCase();
-
-    switch (method) {
-      case 'get':
-      case 'put':
-      case 'post':
-      case 'delete':
-        return method;
-        break;
-      default:
-        throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
+            throw 'Invalid REST "method" property in "lib/config/route.config.json": ' + method;
     }
-  }
 }
 
 function registerRoute(application, controller, route, method) {
