@@ -14,47 +14,66 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   promptingStep: function() {
-    this.questions.push({ type    : 'input',
-                          name    : 'applicationName',
-                          message : 'Application Name',
-                          default : this.applicationName });
+    if(!this.options.applicationName) {
+        this.questions.push({ type: 'input',
+                              name: 'applicationName',
+                              message: 'Application Name',
+                              default: this.applicationName
+        });
+    }
 
-    this.questions.push({ type    : 'input',
-                          name    : 'version',
-                          message : 'Version',
-                          default :  this.version });
+    if(!this.options.version) {
+        this.questions.push({ type: 'input',
+                              name: 'version',
+                              message: 'Version',
+                              default: this.version
+        });
+    }
 
-    this.questions.push({ type    : 'input',
-                          name    : 'applicationDescription',
-                          message : 'Application Description',
-                          default : this.applicationDescription });
+      if(!this.options.applicationDescription) {
+        this.questions.push({ type    : 'input',
+                              name    : 'applicationDescription',
+                              message : 'Application Description',
+                              default : this.applicationDescription });
+      }
 
-    this.questions.push({ type    : 'input',
-                          name    : 'author',
-                          message : 'Author',
-                          default : this.author });
+      if(!this.options.author) {
+        this.questions.push({ type    : 'input',
+                              name    : 'author',
+                              message : 'Author',
+                              default : this.author });
+      }
 
-    this.questions.push({ type    : 'input',
-                          name    : 'gitRepository',
-                          message : 'Git Repository',
-                          default : this.gitRepository });
+      if(!this.options.gitRepository) {
+        this.questions.push({ type    : 'input',
+                              name    : 'gitRepository',
+                              message : 'Git Repository',
+                              default : this.gitRepository });
+      }
 
-    this.questions.push({ type    : 'input',
-                          name    : 'license',
-                          message : 'License',
-                          default : this.license });
-
+      if(!this.options.license) {
+        this.questions.push({ type    : 'input',
+                              name    : 'license',
+                              message : 'License',
+                              default : this.license });
+      }
     var done = this.async();
 
     var generator = this;
 
+    var getAnswerOrOption = function(answer, option){
+          if(answer)
+              return answer;
+          return option
+      }
+
     var handleAnswers = function(answers) {
-      generator.applicationName = answers.applicationName;
-      generator.version = answers.version;
-      generator.applicationDescription = answers.applicationDescription;
-      generator.author = answers.author;
-      generator.gitRepository = answers.gitRepository;
-      generator.license = answers.license;
+      generator.applicationName = getAnswerOrOption(answers.applicationName, this.options.applicationName);
+      generator.version = getAnswerOrOption(answers.version, this.options.version);
+      generator.applicationDescription = getAnswerOrOption(answers.applicationDescription, this.options.applicationDescription);
+      generator.author = getAnswerOrOption(answers.author, this.options.author);
+      generator.gitRepository = getAnswerOrOption(answers.gitRepository, this.options.gitRepository);
+      generator.license = getAnswerOrOption(answers.license, this.options.license);
 
       done();
     };
